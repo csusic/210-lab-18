@@ -15,71 +15,71 @@ struct Node {
 //function prototypes
 void addHeadNode();
 void addTailNode();
-void print();
+void printRating();
+void printComments();
 
 int main() {
     int choiceList;
     char choiceReview;
+    double average;
     
     cout << "Which linked list method should we use?" << endl;
     cout << "[1] New nodes are added at the head of the linked list" << endl;
     cout << "[2] New nodes are added at the tail of the linked list" << endl;
     cin >> choiceList;
+    
+    //input data to linked list
+    //review rating
+    cout << "Enter review rating 0-5: " << endl;
     if (choiceList == 1) {
-        //nodes are added at the head
-        addHeadNode;
+        //if 1, nodes are added at the head
+        while (cin >> rating) {
+            addHeadNode(head, rating);
+        }
     }
-    else if (choice == 2) {
-        //nodes are added at the tail
-        addTailNode;
+    else if (choiceList == 2) {
+        //if 2, nodes are added at the tail
+         while (cin >> rating) {
+            addTailNode(head, rating);
+        }
     }
     else {
         cout << "Invalid entry. Please enter 1 or 2."
     }
     
     //input data to linked list
-    for (int i = 0; i < 4; i++) {
-        //review rating
-        cout << "Enter review rating 0-5: " << endl;
+    //review comments
+    cout << "Enter review comments: " << endl;
+    if (choiceList == 1) {
         //if 1, nodes are added at the head
-        if (choiceList == 1) {
-            while (cin >> rating) {
-                addHeadNode(head, rating);
-            }
+        while (cin >> comments) {
+            addHeadNode(head, comments);
         }
-        //if 2, nodes are added at the tail
-        else if (choice == 2) {
-            while (cin >> rating) {
-                addTailNode(head, rating);
-            }
-        }
-        //review comments
-        cout << "Enter review comments: " << endl;
-        //if 1, nodes are added at the head
-        if (choiceList == 1) {
-            while (cin >> review) {
-                addHeadNode(head, review);
-            }
-        }
-        //if 2, nodes are added at the tail
-        else if (choice == 2) {
-            while (cin >> review) {
-                addTailNode(head, review);
-            }
-        }
-        //another review?
-        cout << "Enter another review? Y/N: " << endl;
-        cin >> choiceReview;
-        if (choiceReview == 'Y' OR 'y') {
-            continue
-        }
-        else break; 
     }
+    else if (choiceList == 2) {
+        //if 2, nodes are added at the tail
+         while (cin >> comments) {
+            addTailNode(head, comments);
+        }
+    }
+    else {
+        cout << "Invalid entry. Please enter 1 or 2."
+    }
+    
+    //another review?
+    cout << "Enter another review? Y/N: " << endl;
+    cin >> choiceReview;
+    if (choiceReview == 'Y' OR 'y') {
+        continue
+    }
+    else break; 
   
     //output data
     cout << "Outputting all reviews: " << endl;
     for (int i = 0; i < 4; i++) {
-        cout << "> Review #" << i + 1 << ": " << review[i];
+        cout << "> Review #" << i + 1 << ": ";
+        cout << printRating() << ": ";
+        cout << printReview() << endl;
     }
     //calculate average
     cout << "Average: " << average << endl;
@@ -122,15 +122,20 @@ void addTailNode() {
     }
 };
 
-void print() {
+void printRating() {
     Node *head = nullptr; //head ptr
     Node *temp = head; //temp node pointing to head
     while (temp) {
         cout << temp->rating << " ";
         temp = temp->next;
     }
+};
+
+void printReview() {
+    Node *head = nullptr; //head ptr
+    Node *temp = head; //temp node pointing to head
     while (temp) {
-        cout << 
+        cout << temp->review << " ";
         temp = temp->next;
     }
 };
