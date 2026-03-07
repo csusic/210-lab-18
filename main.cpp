@@ -6,19 +6,23 @@ using namespace std;
 
 const int SIZE = 7;
 
-struct Node {
+class Node {
+    public:
     int rating;
     string comments;
     Node *next;
 };
 
 //function prototypes
-void addHeadNode();
-void addTailNode();
+void addHeadNode(int, string);
+void addTailNode(int, string);
 void printRating();
 void printComments();
 
 int main() {
+    Node one; //Node object
+    Node *head = nullptr; //head ptr
+    Node *newNode = new Node; //newNode ptr pointing to new Node
     int choiceList;
     char choiceReview;
     double average;
@@ -30,56 +34,58 @@ int main() {
     
     //input data to linked list
     //review rating
-    cout << "Enter review rating 0-5: " << endl;
-    if (choiceList == 1) {
-        //if 1, nodes are added at the head
-        while (cin >> rating) {
-            addHeadNode(head, rating);
+    for (int i = 0; i < 4; i++) {
+        cout << "Enter review rating 0-5: " << endl;
+        if (choiceList == 1) {
+            //if 1, nodes are added at the head
+            while (cin >> one.rating) {
+                addHeadNode(one.rating);
+            }
         }
-    }
-    else if (choiceList == 2) {
-        //if 2, nodes are added at the tail
-         while (cin >> rating) {
-            addTailNode(head, rating);
+        else if (choiceList == 2) {
+            //if 2, nodes are added at the tail
+            while (cin >> one.rating) {
+                addTailNode(one.rating);
+            }
         }
-    }
-    else {
-        cout << "Invalid entry. Please enter 1 or 2."
-    }
+        else {
+            cout << "Invalid entry. Please enter 1 or 2."
+        }
     
-    //input data to linked list
-    //review comments
-    cout << "Enter review comments: " << endl;
-    if (choiceList == 1) {
-        //if 1, nodes are added at the head
-        while (cin >> comments) {
-            addHeadNode(head, comments);
+        //input data to linked list
+        //review comments
+        cout << "Enter review comments: " << endl;
+        if (choiceList == 1) {
+            //if 1, nodes are added at the head
+            while (cin >> one.comments) {
+                addHeadNode(one.comments);
+            }
         }
-    }
-    else if (choiceList == 2) {
-        //if 2, nodes are added at the tail
-         while (cin >> comments) {
-            addTailNode(head, comments);
+        else if (choiceList == 2) {
+            //if 2, nodes are added at the tail
+            while (cin >> one.comments) {
+                addTailNode(one.comments);
+            }
         }
-    }
-    else {
-        cout << "Invalid entry. Please enter 1 or 2."
-    }
+        else {
+            cout << "Invalid entry. Please enter 1 or 2."
+        }
     
-    //another review?
-    cout << "Enter another review? Y/N: " << endl;
-    cin >> choiceReview;
-    if (choiceReview == 'Y' OR 'y') {
-        continue
+        //another review?
+        cout << "Enter another review? Y/N: " << endl;
+        cin >> choiceReview;
+        if (choiceReview == 'Y' OR 'y') {
+            continue
+        }
+        else break; 
     }
-    else break; 
   
     //output data
     cout << "Outputting all reviews: " << endl;
     for (int i = 0; i < 4; i++) {
         cout << "> Review #" << i + 1 << ": ";
         cout << printRating() << ": ";
-        cout << printReview() << endl;
+        cout << printComments() << endl;
     }
     //calculate average
     cout << "Average: " << average << endl;
@@ -87,7 +93,7 @@ int main() {
     return 0;
 }
 
-void addHeadNode() {
+void addHeadNode(int val, string comments) {
     //adding a node to the head
     Node *head = nullptr; //head ptr
     Node *newNode = new Node; //newNode ptr pointing to new Node
@@ -103,7 +109,7 @@ void addHeadNode() {
     }
 };
 
-void addTailNode() {
+void addTailNode(int val, string comments) {
     //adding a node to the tail
     Node *head = nullptr; //head ptr
     Node *tailNode = nullptr; //tail ptr
@@ -131,11 +137,11 @@ void printRating() {
     }
 };
 
-void printReview() {
+void printComments() {
     Node *head = nullptr; //head ptr
     Node *temp = head; //temp node pointing to head
     while (temp) {
-        cout << temp->review << " ";
+        cout << temp->comments << " ";
         temp = temp->next;
     }
 };
