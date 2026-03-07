@@ -15,6 +15,7 @@ struct Node {
 //function prototypes
 void addHeadNode();
 void addTailNode();
+void print();
 
 int main() {
     int choiceList;
@@ -38,28 +39,48 @@ int main() {
     
     //input data to linked list
     for (int i = 0; i < 4; i++) {
+        //review rating
         cout << "Enter review rating 0-5: " << endl;
-        while (cin >> rating) {
-            addTailNode(head, rating);
+        //if 1, nodes are added at the head
+        if (choiceList == 1) {
+            while (cin >> rating) {
+                addHeadNode(head, rating);
+            }
         }
+        //if 2, nodes are added at the tail
+        else if (choice == 2) {
+            while (cin >> rating) {
+                addTailNode(head, rating);
+            }
+        }
+        //review comments
         cout << "Enter review comments: " << endl;
-        while (cin >> review) {
-            addTailNode(head, review);
+        //if 1, nodes are added at the head
+        if (choiceList == 1) {
+            while (cin >> review) {
+                addHeadNode(head, review);
+            }
         }
+        //if 2, nodes are added at the tail
+        else if (choice == 2) {
+            while (cin >> review) {
+                addTailNode(head, review);
+            }
+        }
+        //another review?
         cout << "Enter another review? Y/N: " << endl;
         cin >> choiceReview;
-        if (choiceReview = 'Y' OR 'y') {
+        if (choiceReview == 'Y' OR 'y') {
             continue
         }
         else break; 
     }
-    
-    //traverse linked list
   
     //output data
     cout << "Outputting all reviews: " << endl;
-    for (int i = 0; i < )
-    cout << "> Review #" << i + 1 << ": " << review[i];
+    for (int i = 0; i < 4; i++) {
+        cout << "> Review #" << i + 1 << ": " << review[i];
+    }
     //calculate average
     cout << "Average: " << average << endl;
     
@@ -94,9 +115,23 @@ void addTailNode() {
     }
     else { //if list is not empty
         tailNode = head; //tailNode becomes the head
-        while (tailNode->next) //loops through the linked list
+        while (tailNode->next) { //loops through the linked list
             tailNode = tailNode->next;
+        }
         tailNode->next = newNode; //newNode becomes the tail
+    }
+};
+
+void print() {
+    Node *head = nullptr; //head ptr
+    Node *temp = head; //temp node pointing to head
+    while (temp) {
+        cout << temp->rating << " ";
+        temp = temp->next;
+    }
+    while (temp) {
+        cout << 
+        temp = temp->next;
     }
 };
 
