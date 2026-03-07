@@ -14,8 +14,8 @@ class Node {
 };
 
 //function prototypes
-void addHeadNode(int, string);
-void addTailNode(int, string);
+void addHeadNode(Node*&, int, string);
+void addTailNode(Node*&, int, string);
 void printRating();
 void printComments();
 
@@ -35,36 +35,39 @@ int main() {
     //input data to linked list
     //review rating
     for (int i = 0; i < 4; i++) {
-        cout << "Enter review rating 0-5: " << endl;
+        //if 1, nodes are added at the head
         if (choiceList == 1) {
-            //if 1, nodes are added at the head
-            while (cin >> one.rating) {
-                addHeadNode(one.rating);
-            }
+            cout << "Enter review rating 0-5: " << endl;
+            cin >> one.rating;
+             //review comments
+            cout << "Enter review comments: " << endl;
+            cin >> one.comments;
+            addHeadNode(head, one.rating, one.comments);
         }
         else if (choiceList == 2) {
             //if 2, nodes are added at the tail
-            while (cin >> one.rating) {
-                addTailNode(one.rating);
-            }
+            cout << "Enter review rating 0-5: " << endl;
+            cin >> one.rating;
+             //review comments
+            cout << "Enter review comments: " << endl;
+            cin >> one.comments;
+            addTailNode(head, one.rating, one.comments);
         }
         else {
             cout << "Invalid entry. Please enter 1 or 2."
         }
     
         //input data to linked list
-        //review comments
-        cout << "Enter review comments: " << endl;
         if (choiceList == 1) {
             //if 1, nodes are added at the head
             while (cin >> one.comments) {
-                addHeadNode(one.comments);
+                addHeadNode(head, one.comments);
             }
         }
         else if (choiceList == 2) {
             //if 2, nodes are added at the tail
             while (cin >> one.comments) {
-                addTailNode(one.comments);
+                addTailNode(head, one.comments);
             }
         }
         else {
@@ -93,7 +96,7 @@ int main() {
     return 0;
 }
 
-void addHeadNode(int val, string comments) {
+void addHeadNode(Node*&head, int val, string val) {
     //adding a node to the head
     Node *head = nullptr; //head ptr
     Node *newNode = new Node; //newNode ptr pointing to new Node
@@ -109,7 +112,7 @@ void addHeadNode(int val, string comments) {
     }
 };
 
-void addTailNode(int val, string comments) {
+void addTailNode(Node*&head, int val, string val) {
     //adding a node to the tail
     Node *head = nullptr; //head ptr
     Node *tailNode = nullptr; //tail ptr
@@ -127,6 +130,16 @@ void addTailNode(int val, string comments) {
         tailNode->next = newNode; //newNode becomes the tail
     }
 };
+
+void delete() {
+    Node *current = head;
+    //deleting a linked list
+    while (current) {
+        Node *nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+}
 
 void printRating() {
     Node *head = nullptr; //head ptr
