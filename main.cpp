@@ -5,6 +5,8 @@
 #include <string>
 using namespace std;
 
+const int SIZE = 4;
+
 struct Node {
     int rating;
     string comments;
@@ -18,7 +20,7 @@ void print(Node*&);
 void deleteNode(Node*&);
 
 int main() {
-    Node one;
+    Node one; //Node object
     Node *head = nullptr; //head ptr
     Node *newNode = new Node; //newNode ptr pointing to new Node
     int choiceList;
@@ -31,7 +33,7 @@ int main() {
     
     //input data to linked list
     //review rating
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < SIZE; i++) {
         cout << "Choice: ";
         cin >> choiceList;
         //if 1, nodes are added at the head
@@ -72,15 +74,9 @@ int main() {
             continue;
         }
     };
-    
-    //output data
-    cout << "Outputting all reviews: " << endl;
-    for (int i = 0; i < 4; i++) {
-        cout << "\t> Review #" << i + 1 << ": ";
-    }
     print(head);
     //calculate average
-    average = (one.rating)/2;
+    average = (one.rating)/SIZE;
     cout << "\t> Average: " << average << endl;
     
     deleteNode(head);
@@ -95,14 +91,11 @@ void addHeadNode(Node*&head, int val1, string val2) {
         head = newNode; //newNode becomes the head
         newNode->next = nullptr; //newNode next points to nullptr
         newNode->rating = val1; //add some value into new Node
-        newNode->next = nullptr; //newNode next points to nullptr
         newNode->comments = val2; //add some value into new Node
     }
     else { //if list is not empty
         newNode->next = head;
         newNode->rating = val1;
-        head = newNode;
-        newNode->next = head;
         newNode->comments = val2;
         head = newNode;
     }
@@ -114,7 +107,6 @@ void addTailNode(Node*&head, int val1, string val2) {
     Node *newNode = new Node; //newNode ptr pointing to new Node
     newNode->next = nullptr; //newNode next points to nullptr
     newNode->rating = val1; //add some value into new Node
-    newNode->next = nullptr; //newNode next points to nullptr
     newNode->comments = val2; //add some value into new Node
     if (!head) { //if list is empty
         head = newNode; //newNode becomes the head
@@ -130,7 +122,9 @@ void addTailNode(Node*&head, int val1, string val2) {
 
 void print(Node*&head) {
     Node* current = head;
+    int count = 1;
     while (current) {
+        cout << "\tReview #" << count++ << ": ";
         cout << current->rating;
         cout << ": ";
         cout << current->comments;
