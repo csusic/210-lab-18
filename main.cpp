@@ -18,7 +18,7 @@ void print(Node*&);
 void deleteNode(Node*&);
 
 int main() {
-    Node one; //Node object
+    Node one;
     Node *head = nullptr; //head ptr
     Node *newNode = new Node; //newNode ptr pointing to new Node
     int choiceList;
