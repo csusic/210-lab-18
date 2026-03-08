@@ -21,7 +21,7 @@ void addTailNodeRating(Node*&, int);
 void addTailNodeComments(Node*&, string);
 void printRating();
 void printComments();
-void deleteNode();
+void deleteNode(Node*&);
 
 int main() {
     Node one; //Node object
@@ -34,6 +34,7 @@ int main() {
     cout << "Which linked list method should we use?" << endl;
     cout << "[1] New nodes are added at the head of the linked list" << endl;
     cout << "[2] New nodes are added at the tail of the linked list" << endl;
+    cout << "Choice: ";
     cin >> choiceList;
     
     //input data to linked list
@@ -41,20 +42,20 @@ int main() {
     for (int i = 0; i < 4; i++) {
         //if 1, nodes are added at the head
         if (choiceList == 1) {
-            cout << "Enter review rating 0-5: " << endl;
+            cout << "Enter review rating 0-5: ";
             cin >> one.rating;
              //review comments
-            cout << "Enter review comments: " << endl;
+            cout << "Enter review comments: ";
             cin >> one.comments;
             addHeadNodeRating(head, one.rating);
             addHeadNodeComments(head, one.comments);
         }
         else if (choiceList == 2) {
             //if 2, nodes are added at the tail
-            cout << "Enter review rating 0-5: " << endl;
+            cout << "Enter review rating 0-5: ";
             cin >> one.rating;
              //review comments
-            cout << "Enter review comments: " << endl;
+            cout << "Enter review comments: ";
             cin >> one.comments;
             addTailNodeRating(head, one.rating);
             addTailNodeComments(head, one.comments);
@@ -62,9 +63,9 @@ int main() {
         else {
             cout << "Invalid entry. Please enter 1 or 2.";
         }
-    
+
         //another review?
-        cout << "Enter another review? Y/N: " << endl;
+        cout << "Enter another review? Y/N: ";
         cin >> choiceReview;
         if (choiceReview == 'Y') {
             continue;
@@ -84,7 +85,7 @@ int main() {
     //calculate average
     cout << "Average: " << average << endl;
     
-    deleteNode();
+    deleteNode(head);
     
     return 0;
 }
@@ -155,7 +156,7 @@ void addTailNodeComments(Node*&head, string val) {
     }
 };
 
-void deleteNode() {
+void deleteNode(Node*&head) {
     Node *current = head;
     //deleting a linked list
     while (current) {
