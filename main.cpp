@@ -15,12 +15,12 @@ class Node {
 };
 
 //function prototypes
-void addHeadNodeRating(Node*&, int);
-void addHeadNodeComments(Node*&, string);
+void addHeadNodeRating(Node*&, int, string);
+//void addHeadNodeComments(Node*&, string);
 void addTailNodeRating(Node*&, int);
 void addTailNodeComments(Node*&, string);
-void printRating();
-void printComments();
+void printRating(int);
+void printComments(string);
 void deleteNode(Node*&);
 
 int main() {
@@ -47,8 +47,8 @@ int main() {
              //review comments
             cout << "Enter review comments: ";
             cin >> one.comments;
-            addHeadNodeRating(head, one.rating);
-            addHeadNodeComments(head, one.comments);
+            addHeadNodeRating(head, one.rating, one.comments);
+            //addHeadNodeComments(head, one.comments);
         }
         else if (choiceList == 2) {
             //if 2, nodes are added at the tail
@@ -77,9 +77,9 @@ int main() {
     cout << "Outputting all reviews: " << endl;
     for (int i = 0; i < 4; i++) {
         cout << "> Review #" << i + 1 << ": ";
-        printRating();
+        printRating(one.rating);
         cout << ": ";
-        printComments();
+        printComments(one.comments);
         cout << endl;
     }
     //calculate average
@@ -90,13 +90,15 @@ int main() {
     return 0;
 }
 
-void addHeadNodeRating(Node*&head, int val) {
+void addHeadNodeRating(Node*&head, int val1, string val2) {
     //adding a node to the head
     Node *newNode = new Node; //newNode ptr pointing to new Node
     if (!head) { //if list is empty
         head = newNode; //head points to whatever newNode points at
         newNode->next = nullptr; //newNode next points to nullptr
-        newNode->rating = val; //add some value into new Node
+        newNode->rating = val1; //add some value into new Node
+        newNode->next = nullptr; //newNode next points to nullptr
+        newNode->comments = val2; //add some value into new Node
     }
     else { //if list is not empty
         newNode->next = head;
@@ -105,20 +107,22 @@ void addHeadNodeRating(Node*&head, int val) {
     }
 };
 
-void addHeadNodeComments(Node*&head, string val) {
+/*void addHeadNodeComments(Node*&head, int val1, string val2) {
     //adding a node to the head
     Node *newNode = new Node; //newNode ptr pointing to new Node
     if (!head) { //if list is empty
         head = newNode; //head points to whatever newNode points at
         newNode->next = nullptr; //newNode next points to nullptr
-        newNode->comments = val; //add some value into new Node
+        newNode->rating = val1; //add some value into new Node
+        newNode->next = nullptr; //newNode next points to nullptr
+        newNode->comments = val2; //add some value into new Node
     }
     else { //if list is not empty
         newNode->next = head;
-        newNode->comments = val;
+        newNode->comments = val2;
         head = newNode;
     }
-};
+};*/
 
 void addTailNodeRating(Node*&head, int val) {
     //adding a node to the tail
