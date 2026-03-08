@@ -17,7 +17,7 @@ class Node {
 //function prototypes
 void addHeadNode(Node*&, int, string);
 void addTailNode(Node*&, int, string);
-void printNode();
+void print();
 void deleteNode(Node*&);
 
 int main() {
@@ -29,14 +29,14 @@ int main() {
     double average;
     
     cout << "Which linked list method should we use?" << endl;
-    cout << "[1] New nodes are added at the head of the linked list" << endl;
-    cout << "[2] New nodes are added at the tail of the linked list" << endl;
-    cout << "Choice: ";
-    cin >> choiceList;
+    cout << "\t[1] New nodes are added at the head of the linked list" << endl;
+    cout << "\t[2] New nodes are added at the tail of the linked list" << endl;
     
     //input data to linked list
     //review rating
-    do {
+    for (int i = 0; i < 4; i++) {
+        cout << "Choice: ";
+        cin >> choiceList;
         //if 1, nodes are added at the head
         if (choiceList == 1) {
             cout << "Enter review rating 0-5: ";
@@ -56,25 +56,35 @@ int main() {
             addTailNode(head, one.rating, one.comments);
         }
         else {
-            cout << "Invalid entry. Please enter 1 or 2.";
+            cout << "Invalid entry. Please enter 1 or 2." << endl;
+            continue;
         }
-
         //another review?
         cout << "Enter another review? Y/N: ";
         cin >> choiceReview;
-    } while (choiceReview == 'Y' || choiceReview == 'y');
-  
+        if (choiceReview == 'Y' || choiceReview == 'y') {
+            continue;
+        }
+        else if (choiceReview == 'N' || choiceReview == 'n') {
+            break;
+        }
+        else {
+            cout << "Invalid entry. Please enter Y/N." << endl;
+            continue;
+        }
+    };
+    
     //output data
     cout << "Outputting all reviews: " << endl;
     for (int i = 0; i < 4; i++) {
-        cout << "\t> Review #" << i + 1 << ": " << one.rating;
-        cout << ": " << one.comments;
-        cout << endl;
+        cout << "\t> Review #" << i + 1 << ": ";
+        cout << one.rating << ": " << one.comments << endl;
     }
     //calculate average
-    cout << "\t>Average: " << average << endl;
+    average = (one.rating)/2;
+    cout << "\t> Average: " << average << endl;
     
-    deleteNode(head);
+    delete(head);
     
     return 0;
 }
@@ -120,25 +130,14 @@ void addTailNode(Node*&head, int val1, string val2) {
     }
 };
 
-void printRating() {
+void print() {
     Node *head = nullptr; //head ptr
-    Node* temp = head; // Initialize temp pointer to the head
-    cout << "List contents: ";
-    
-    // Traverse the list until temp becomes NULL
-    while (temp != nullptr) {
-        cout << temp->rating << " "; // Print the data
-        temp = temp->next;         // Move to the next node
-    }
-    cout << endl; // Print a newline at the end
-};
-
-void printComments() {
-    Node *head = nullptr; //head ptr
-    Node *temp = head; //temp node pointing to head
-    while (temp) {
-        cout << temp->comments << " ";
-        temp = temp->next;
+    Node* current = head;
+    while (current) {
+        cout << current->rating;
+        cout << ": ";
+        cout << current->comments;
+        current = current->next;
     }
 };
 
